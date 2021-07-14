@@ -70,7 +70,7 @@ function Check_access(client_ip,user_agent,username,useremail,login_failed)
     { url = gk_url, method = "POST", headers = { ["Content-Type"] = "application/json",  ["Accept"] = "*/*",  ["Content-Length"] = payload:len() },
     source = ltn12.source.string(payload),
     sink = ltn12.sink.table(response_body),
-    protocol = "tlsv1" }
+    protocol = "any" }
     -- ngx.log(ngx.STDERR,table.concat(response_body))
     return cjson.decode(table.concat(response_body))
 end
