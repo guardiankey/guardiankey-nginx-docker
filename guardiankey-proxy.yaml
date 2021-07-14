@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  web:
+    image: guardiankey-proxy-nginx
+    ports:
+      - "443:443"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - type: bind
+        source: /etc/letsencrypt/live/meudominio.com.br/
+        target: /etc/nginx/letsencrypt
+      - type: bind
+        source: /opt/guardiankey
+        target: /etc/nginx/guardiankey
+    command: /usr/sbin/nginx
+    stdin_open: true
+    tty: true
